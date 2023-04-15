@@ -1,3 +1,5 @@
+import AddProjectButton from '../AddProjectButton'
+
 const Explore = () => {
   const headerStyle: React.CSSProperties = {
     display: 'flex',
@@ -13,8 +15,8 @@ const Explore = () => {
         <article>
           <header style={headerStyle}>
             <h1 style={{ marginRight: '500px' }}>CareConnect</h1>
-            <div style={{ display: 'flex', gap: '25px', paddingRight: '30px' }}>
-              <h2>+</h2>
+            <div style={{ display: 'flex', gap: '20px', paddingRight: '30px' }}>
+              <AddProjectButton />
               <h2>Profile</h2> {/* TODO Add profile button */}
             </div>
           </header>
