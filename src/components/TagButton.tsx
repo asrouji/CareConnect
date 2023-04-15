@@ -20,7 +20,7 @@ const TagButton = ({ name, color = 'white', textColor = 'black' }: TagButtonProp
 }
 
 const renderTagButton = (tag: keyof typeof tagColors) => {
-  return <TagButton name={tag} color={tagColors[tag][0]} textColor={tagColors[tag][1]}/>
+  return <TagButton name={tag} key={tag} color={tagColors[tag][0]} textColor={tagColors[tag][1]}/>
 }
 
 export default renderTagButton
