@@ -1,8 +1,9 @@
 import './App.css'
-import ProjectCard from './components/ProjectCard'
+// import ProjectCard from './components/ProjectCard'
+import Explore from './components/pages/Explore'
 
 function App() {
-  return <ProjectCard name="Project Name" description="Project description" tags={["No Poverty"]}/>
+  return <Explore />
 }
 
 export default App

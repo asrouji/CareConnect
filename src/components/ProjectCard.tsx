@@ -1,13 +1,8 @@
 import { Tag } from '../types/tag'
 import renderTagButton from './TagButton'
+import { Project } from '../types/project'
 
-type ProjectCardProps = {
-  name: string
-  description: string
-  tags?: Tag[]
-}
-
-const ProjectCard = ({ name, description, tags = [] as Tag[] }: ProjectCardProps) => {
+const ProjectCard = ({ name, description, tags }: Project) => {
   return (
     <>
       <h3>{name}</h3>
