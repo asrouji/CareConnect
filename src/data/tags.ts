@@ -1,0 +1,20 @@
+export const tagColors = {
+  "No Poverty": ["#e5233d", "#ffffff"],
+  "Zero Hunger": ["#dda73a", "#ffffff"],
+  "Good Health and Well-Being": ["#4ca146", "#ffffff"],
+  "Quality Education": ["#c7212f", "#ffffff"],
+  "Gender Equality": ["#ef402d", "#ffffff"],
+  "Clean Water and Sanitation": ["#27bfe6", "#ffffff"],
+  "Affordable and Clean Energy": ["fbc412", "#ffffff"],
+  "Decent Work and Economic Growth": ["#a31c44", "#ffffff"],
+  "Industry, Innovation and Infrastructure": ["#f26a2e", "#ffffff"],
+  "Reduced Inequalities": ["#e01483", "#ffffff"],
+  "Sustainable Cities and Communities": ["#f89d2a", "#ffffff"],
+  "Responsible Consumption and Production": ["#bf8d2c", "#ffffff"],
+  "Climate Action": ["#407f46", "#ffffff"],
+  "Life Below Water": ["#1f97d4", "#ffffff"],
+  "Life on Land": ["#59ba47", "#ffffff"],
+  "Peace, Justice and Strong Institutions": ["#136a9f", "#ffffff"],
+  "Partnerships for the Goals": ["#14496b", "#ffffff"],
+}
+
