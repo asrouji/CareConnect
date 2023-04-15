@@ -1,1 +1,3 @@
-export type ProjectTag = string
+import { tags } from '../data/tags'
+
+export type Tag = keyof typeof tags

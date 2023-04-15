@@ -1,7 +1,5 @@
-import { tagColors } from '../data/tags'
+import { Tag } from '../types/tag'
 import renderTagButton from './TagButton'
-
-type Tag = keyof typeof tagColors
 
 type ProjectCardProps = {
   name: string

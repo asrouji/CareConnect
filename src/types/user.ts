@@ -1,5 +1,5 @@
 import { Project } from './project'
-import { ProjectTag } from './tag'
+import { Tag } from './tag'
 
 export type User = {
   /** name of this user */
@@ -11,5 +11,5 @@ export type User = {
   /** projects this user has joined */
   projects: Project[]
   /** tags this user has marked as preferences */
-  tags: ProjectTag[]
+  tags: Tag[]
 }

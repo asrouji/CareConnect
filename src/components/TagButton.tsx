@@ -1,4 +1,5 @@
-import { tagColors } from '../data/tags'
+import { tags } from '../data/tags'
+import { Tag } from '../types/tag'
 
 type TagButtonProps = {
   name: string,
@@ -19,8 +20,8 @@ const TagButton = ({ name, color = 'white', textColor = 'black' }: TagButtonProp
   )
 }
 
-const renderTagButton = (tag: keyof typeof tagColors) => {
-  return <TagButton name={tag} key={tag} color={tagColors[tag][0]} textColor={tagColors[tag][1]}/>
+const renderTagButton = (tag: Tag) => {
+  return <TagButton name={tag} key={tag} color={tags[tag].colors[0]} textColor={tags[tag].colors[1]}/>
 }
 
 export default renderTagButton
