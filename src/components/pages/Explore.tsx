@@ -2,8 +2,6 @@ import AddProjectButton from '../AddProjectButton'
 import ProjectCard from '../ProjectCard'
 import { getProjects } from '../../api/api'
 
-import '../../css/explore.css'
-
 const styles = {
   header: {
     display: 'flex',
@@ -19,6 +17,12 @@ const styles = {
     gap: '20px',
     paddingRight: '30px',
   },
+
+  main: {
+    display: 'grid',
+    paddingInline: '30px',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+  }
 }
 
 const Explore = () => {
@@ -32,7 +36,7 @@ const Explore = () => {
             <h2>Profile</h2> {/* TODO Add profile button */}
           </div>
         </header>
-        <main>
+        <main style={styles.main}>
           {getProjects().map(project => (
             <ProjectCard {...project} />
           ))}
