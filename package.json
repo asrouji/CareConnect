@@ -27,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=./src/utils/testEnvironment.ts",
     "eject": "react-scripts eject",
     "type-check": "tsc --noEmit"
   },
