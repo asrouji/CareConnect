@@ -1,6 +1,9 @@
 import { Project } from '../types/project'
 import { Tag } from '../types/tag'
 import sampleData from '../data/sampleData'
+import { MongoClient } from 'mongodb'
+
+const client = new MongoClient('mongodb+srv://asrouji:RmxXXLPkpkighAqv@careconnect.lwgoj7d.mongodb.net/test')
 
 /**
  * Gets all projects in the database. If tags are provided, only projects with those tags are returned.
