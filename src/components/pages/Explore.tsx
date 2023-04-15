@@ -1,31 +1,46 @@
 import AddProjectButton from '../AddProjectButton'
+import ProjectCard from '../ProjectCard'
+import { getProjects } from '../../api/api'
 
-const Explore = () => {
-  const headerStyle: React.CSSProperties = {
+import '../../css/explore.css'
+
+const styles = {
+  header: {
     display: 'flex',
     justifyContent: 'flex-end',
-  }
+  },
 
+  title: {
+    marginRight: '500px',
+  },
+
+  buttons: {
+    display: 'flex',
+    gap: '20px',
+    paddingRight: '30px',
+  },
+}
+
+const Explore = () => {
   return (
     <>
-      <head>
-        <title>Explore</title>
-      </head>
-      <body>
-        <article>
-          <header style={headerStyle}>
-            <h1 style={{ marginRight: '500px' }}>CareConnect</h1>
-            <div style={{ display: 'flex', gap: '20px', paddingRight: '30px' }}>
-              <AddProjectButton />
-              <h2>Profile</h2> {/* TODO Add profile button */}
-            </div>
-          </header>
-          <main></main> {/* TODO Add project cards */}
-          <footer></footer> {/* TODO Add project plus button*/}
-        </article>
-        <h1>=</h1>
-        {/* <ProjectCard name="Project Name" description="Project description" tags={['No Poverty']} /> */}
-      </body>
+      <article>
+        <header style={styles.header}>
+          <h1 style={styles.title}>CareConnect</h1>
+          <div style={styles.buttons}>
+            <AddProjectButton />
+            <h2>Profile</h2> {/* TODO Add profile button */}
+          </div>
+        </header>
+        <main>
+          {getProjects().map(project => (
+            <ProjectCard {...project} />
+          ))}
+        </main>{' '}
+        {/* TODO Add project cards */}
+        <footer></footer> {/* TODO Add project plus button*/}
+      </article>
+      {/* <ProjectCard name="Project Name" description="Project description" tags={['No Poverty']} /> */}
     </>
   )
 }
