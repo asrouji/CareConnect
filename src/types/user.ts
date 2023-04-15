@@ -1,5 +1,5 @@
 import { Project } from './project'
-import { ProjectTag } from './projectTag'
+import { ProjectTag } from './tag'
 
 export type User = {
   name: string

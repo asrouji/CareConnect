@@ -1,4 +1,4 @@
-import { ProjectTag } from './projectTag'
+import { ProjectTag } from './tag'
 import { User } from './user'
 
 export type Project = {
