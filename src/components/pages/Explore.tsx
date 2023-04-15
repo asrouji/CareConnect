@@ -1,6 +1,3 @@
-import ProjectCard from '../ProjectCard'
-import { Project } from '../../types/project'
-
 const Explore = () => {
   const headerStyle: React.CSSProperties = {
     display: 'flex',

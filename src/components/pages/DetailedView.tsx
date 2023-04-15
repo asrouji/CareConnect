@@ -1,4 +1,3 @@
-import ProjectCard from '../ProjectCard'
 import { Project } from '../../types/project'
 
 const DetailedView = ({ name, description, creator, tags }: Project) => {

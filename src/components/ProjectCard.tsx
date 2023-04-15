@@ -1,4 +1,3 @@
-import { Tag } from '../types/tag'
 import renderTagButton from './TagButton'
 import { Project } from '../types/project'
 
