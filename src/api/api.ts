@@ -1,8 +1,9 @@
 import { Project } from '../types/project'
 import { Tag } from '../types/tag'
-import { MongoClient, ObjectId } from 'mongodb'
+import axios from 'axios'
+import dotenv from 'dotenv'
 
-const client = new MongoClient('mongodb+srv://asrouji:RmxXXLPkpkighAqv@careconnect.lwgoj7d.mongodb.net/test')
+dotenv.config()
 
 /**
  * Gets all projects in the database. If tags are provided, only projects with those tags are returned.
@@ -11,42 +12,57 @@ const client = new MongoClient('mongodb+srv://asrouji:RmxXXLPkpkighAqv@careconne
  * @returns the projects in the database filtered by the given parameters
  */
 export const getProjects = async (limit = 10, tags?: Tag[]): Promise<Project[]> => {
-  let projects: Project[] = []
-  try {
-    await client.connect()
-    const database = client.db('careConnect')
-    const collection = database.collection('projects')
-    const query = tags ? { tags: { $in: tags } } : {}
-    const cursor = collection.find(query).limit(limit)
-    const results = await cursor.toArray()
-    projects = results.map(p => ({
-      id: p._id.toString(),
-      name: p.name,
-      description: p.description,
-      tags: p.tags as Tag[],
-      creator: {
-        id: p.creator,
-        name: 'Placeholder',
-        email: 'Placeholder',
-        password: 'Placeholder',
-        projects: [],
-        tags: [],
-      },
-      members: p.members.map((id: string) => ({
-        id,
-        name: 'Placeholder',
-        email: 'Placeholder',
-        password: 'Placeholder',
-        projects: [],
-        tags: [],
-      })),
-    }))
-  } catch (e) {
-    console.error(e)
-  } finally {
-    await client.close()
+  const projects: Project[] = []
+  const config = {
+    method: 'post',
+    url: 'https://us-west-2.aws.data.mongodb-api.com/app/data-ckdtn/endpoint/data/v1/action/find',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Request-Headers': '*',
+      'api-key': process.env.API_KEY,
+    },
+    data: JSON.stringify({
+      collection: 'projects',
+      database: 'careConnect',
+      dataSource: 'careConnect',
+    }),
   }
-  return projects
+
+  try {
+    const response = await axios(config)
+    const documents = response.data.documents
+    documents.forEach((document: any) => {
+      const project: Project = {
+        id: document._id,
+        name: document.name,
+        description: document.description,
+        creator: {
+          id: document.creator,
+          name: 'User',
+          email: 'user@gmail.com',
+          password: 'user123',
+          tags: [],
+          projects: [],
+        },
+        members: document.members.map((member: any) => {
+          return {
+            id: member,
+            name: 'User',
+            email: 'user@gmail.com',
+            password: 'user123',
+            tags: [],
+            projects: [],
+          }
+        }),
+        tags: document.tags,
+      }
+      projects.push(project)
+    })
+  } catch (error) {
+    console.log(error)
+  }
+
+  return projects.filter(p => !tags || tags.some(t => p.tags.includes(t))).slice(0, limit)
 }
 
 /**
@@ -55,72 +71,171 @@ export const getProjects = async (limit = 10, tags?: Tag[]): Promise<Project[]> 
  * @returns the project with the given id, or undefined if it does not exist
  */
 export const getProjectById = async (id: string): Promise<Project | undefined> => {
-  let project: Project | undefined
-  try {
-    await client.connect()
-    const database = client.db('careConnect')
-    const collection = database.collection('projects')
-    const result = await collection.findOne({ _id: new ObjectId(id) })
-    if (result) {
-      project = {
-        id: result._id.toString(),
-        name: result.name,
-        description: result.description,
-        tags: result.tags as Tag[],
-        creator: {
-          id: result.creator,
-          name: 'Placeholder',
-          email: 'Placeholder',
-          password: 'Placeholder',
-          projects: [],
-          tags: [],
-        },
-        members: result.members.map((id: string) => ({
-          id,
-          name: 'Placeholder',
-          email: 'Placeholder',
-          password: 'Placeholder',
-          projects: [],
-          tags: [],
-        })),
-      }
-    }
-  } catch (e) {
-    console.error(e)
+  let project: Project | undefined = undefined
+  const config = {
+    method: 'post',
+    url: 'https://us-west-2.aws.data.mongodb-api.com/app/data-ckdtn/endpoint/data/v1/action/findOne',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Request-Headers': '*',
+      'api-key': process.env.API_KEY,
+    },
+    data: JSON.stringify({
+      collection: 'projects',
+      database: 'careConnect',
+      dataSource: 'careConnect',
+      filter: {
+        _id: id,
+      },
+    }),
   }
+
+  try {
+    const response = await axios(config)
+    const document = response.data.document
+    if (!document) {
+      return undefined
+    }
+    project = {
+      id: document._id,
+      name: document.name,
+      description: document.description,
+      creator: {
+        id: document.creator,
+        name: 'User',
+        email: 'user@gmail.com',
+        password: 'user123',
+        tags: [],
+        projects: [],
+      },
+      tags: document.tags,
+      members: document.members.map((member: any) => {
+        return {
+          id: member,
+          name: 'User',
+          email: 'user@gmail.com',
+          password: 'user123',
+          tags: [],
+          projects: [],
+        }
+      }),
+    }
+  } catch (error) {
+    console.log(error)
+  }
+
   return project
 }
 
 /**
- * Creates a new project in the database. If the project already exists, it will be updated.
- * @param project the project to create or update
- * @returns true if the project was created or updated successfully, false otherwise
+ * Creates a new project in the database.
+ * @param project the project to create
+ * @returns true if the project was created successfully, false otherwise
  */
 export const createProject = async (project: Project): Promise<boolean> => {
-  let success = false
+  const config = {
+    method: 'post',
+    url: 'https://us-west-2.aws.data.mongodb-api.com/app/data-ckdtn/endpoint/data/v1/action/insertOne',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Request-Headers': '*',
+      'api-key': process.env.API_KEY,
+    },
+    data: JSON.stringify({
+      collection: 'projects',
+      database: 'careConnect',
+      dataSource: 'careConnect',
+      document: {
+        _id: project.id,
+        name: project.name,
+        description: project.description,
+        creator: project.creator.id,
+        members: project.members.map(member => member.id),
+        tags: project.tags,
+      },
+    }),
+  }
+
   try {
-    await client.connect()
-    const database = client.db('careConnect')
-    const collection = database.collection('projects')
-    const result = await collection.findOneAndUpdate(
-      { _id: new ObjectId(project.id) },
-      {
+    await axios(config)
+    return true
+  } catch (error) {
+    console.log(error)
+    return false
+  }
+}
+
+/**
+ * Updates a project in the database.
+ * @param project the project to update
+ * @returns true if the project was updated successfully, false otherwise
+ */
+export const updateProject = async (project: Project): Promise<boolean> => {
+  const config = {
+    method: 'post',
+    url: 'https://us-west-2.aws.data.mongodb-api.com/app/data-ckdtn/endpoint/data/v1/action/updateOne',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Request-Headers': '*',
+      'api-key': process.env.API_KEY,
+    },
+    data: JSON.stringify({
+      collection: 'projects',
+      database: 'careConnect',
+      dataSource: 'careConnect',
+      filter: {
+        _id: project.id,
+      },
+      update: {
         $set: {
           name: project.name,
           description: project.description,
-          tags: project.tags,
           creator: project.creator.id,
-          members: project.members.map(m => m.id),
+          members: project.members.map(member => member.id),
+          tags: project.tags,
         },
       },
-      { upsert: true }
-    )
-    success = result.ok === 1
-  } catch (e) {
-    console.error(e)
+    }),
   }
-  return success
+
+  try {
+    await axios(config)
+    return true
+  } catch (error) {
+    console.log(error)
+    return false
+  }
 }
 
-const api = { getProjects, getProjectById, createProject }
-export default api
+/**
+ * Deletes a project from the database.
+ * @param id the id of the project to delete
+ * @returns true if the project was deleted successfully, false otherwise
+ */
+export const deleteProject = async (id: string): Promise<boolean> => {
+  const config = {
+    method: 'post',
+    url: 'https://us-west-2.aws.data.mongodb-api.com/app/data-ckdtn/endpoint/data/v1/action/deleteOne',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Request-Headers': '*',
+      'api-key': process.env.API_KEY,
+    },
+    data: JSON.stringify({
+      collection: 'projects',
+      database: 'careConnect',
+      dataSource: 'careConnect',
+      filter: {
+        _id: id,
+      },
+    }),
+  }
+
+  try {
+    await axios(config)
+    return true
+  } catch (error) {
+    console.log(error)
+    return false
+  }
+}
