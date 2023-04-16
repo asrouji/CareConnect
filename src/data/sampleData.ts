@@ -35,7 +35,12 @@ const sampleProjects: Project[] = [
     description: 'This is project 2',
     creator: sampleUsers[1],
     members: [sampleUsers[1]],
-    tags: ['Good Health and Well-Being'],
+    tags: [
+      'Good Health and Well-Being',
+      'Sustainable Cities and Communities',
+      'Partnerships for the Goals',
+      'Affordable and Clean Energy',
+    ],
   },
   {
     id: '3',
@@ -43,7 +48,7 @@ const sampleProjects: Project[] = [
     description: 'This is project 3',
     creator: sampleUsers[1],
     members: [sampleUsers[1]],
-    tags: ['Good Health and Well-Being'],
+    tags: ['Gender Equality', 'Quality Education', 'Peace, Justice and Strong Institutions'],
   },
   {
     id: '4',
@@ -51,7 +56,7 @@ const sampleProjects: Project[] = [
     description: 'This is project 4',
     creator: sampleUsers[1],
     members: [sampleUsers[1]],
-    tags: ['Good Health and Well-Being'],
+    tags: ['Climate Action', 'Industry, Innovation and Infrastructure'],
   },
 ]
 
