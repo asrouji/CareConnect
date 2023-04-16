@@ -1,5 +1,9 @@
+// import chroma from 'chroma-js'
+
 import { tags } from '../data/tags'
 import { Tag } from '../types/tag'
+
+// import chroma from 'chroma-js'
 
 type TagButtonProps = {
   name: string,
@@ -13,6 +17,9 @@ const TagButton = ({ name, color = 'white', textColor = 'black' }: TagButtonProp
     color: textColor,
     border: 'none',
     borderRadius: 0,
+    // '&:hover': {
+      // backgroundColor: chroma(color).,
+    // }
   }
 
   return (
