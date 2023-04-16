@@ -51,7 +51,9 @@ const Homepage = () => {
     <>
       <article style={styles.container}>
         <header style={styles.header}>
-          <h1 style={styles.title}>CareConnect</h1>
+          <h1 style={styles.title} onClick={() => navigate('Explore')}>
+            CareConnect
+          </h1>
           <div style={styles.buttons}>
             <AddProjectButton />
             <h2 onClick={() => navigate('/ProfileView')}>Profile</h2> {/* TODO Add profile button */}

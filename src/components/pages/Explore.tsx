@@ -17,8 +17,8 @@ const styles = {
 const Explore = () => {
   return (
     <div style={styles.cards}>
-      {getProjects().map(project => (
-        <ProjectCard {...project} />
+      {getProjects().map((project, index) => (
+        <ProjectCard key={index} {...project} />
       ))}
     </div>
   )
