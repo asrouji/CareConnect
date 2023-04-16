@@ -10,12 +10,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     minHeight: '300px',
     borderRadius: '10px',
     boxShadow: ' 2px 2px 5px rgba(0, 0, 0, 0.3)',
+    flexBasis: '30%',
   },
 
   tags: {
     display: 'flex',
     flexFlow: 'row wrap',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     paddingBottom: '10px',
   },
 }

@@ -4,6 +4,12 @@ import { getProjects } from '../../api/api'
 import { useNavigate } from 'react-router-dom'
 
 const styles = {
+  container: {
+    display: 'grid',
+    gridTemplateRows: 'auto 1fr auto',
+    minHeight: '100vh',
+  },
+
   header: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -28,10 +34,24 @@ const styles = {
   },
 
   main: {
-    display: 'grid',
+    display: 'flex',
     paddingInline: '30px',
     paddingTop: '20px',
-    gridTemplateColumns: 'repeat(3, 1fr)',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    maxWidth: '100vw',
+    flexFlow: 'row wrap',
+    gap: '20px',
+  },
+
+  footer: {
+    display: 'flex',
+    backgroundColor: 'lightblue',
+    minHeight: '50px',
+    fontFamily: 'Monaco',
+    fontSize: '15px',
+    justifyContent: 'center',
+    paddingTop: '10px',
   },
 }
 
@@ -40,7 +60,7 @@ const Explore = () => {
 
   return (
     <>
-      <article>
+      <article style={styles.container}>
         <header style={styles.header}>
           <h1 style={styles.title}>CareConnect</h1>
           <div style={styles.buttons}>
@@ -54,7 +74,7 @@ const Explore = () => {
           ))}
         </main>{' '}
         {/* TODO Add project cards */}
-        <footer></footer> {/* TODO Add project plus button*/}
+        <footer style={styles.footer}>About the team</footer> {/* TODO Add project plus button*/}
       </article>
       {/* <ProjectCard name="Project Name" description="Project description" tags={['No Poverty']} /> */}
     </>
