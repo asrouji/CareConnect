@@ -49,7 +49,7 @@ const Homepage = () => {
     <>
       <article style={styles.container}>
         <header style={styles.header}>
-          <h1 style={styles.title} onClick={() => navigate('Explore')}>
+          <h1 style={styles.title} onClick={() => navigate('')}>
             CareConnect
           </h1>
           <div style={styles.buttons}>
