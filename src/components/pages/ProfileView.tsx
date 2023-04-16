@@ -1,4 +1,5 @@
 import { User } from '../../types/user'
+import renderTagButton from '../TagButton'
 
 const ProfileView = ({ name, email, projects, tags }: User) => {
   const headerStyle: React.CSSProperties = {
@@ -41,14 +42,7 @@ const ProfileView = ({ name, email, projects, tags }: User) => {
 
           <div>
             <h2>Tags</h2>
-            <ul>
-              {tags.map(tag => (
-                <li key={tag}>
-                  {' '}
-                  <button>{tag}</button>{' '}
-                </li>
-              ))}
-            </ul>
+            {tags.map(tag => renderTagButton(tag))}
           </div>
         </main>
         <footer></footer>
