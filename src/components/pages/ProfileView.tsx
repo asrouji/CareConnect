@@ -19,20 +19,12 @@ const ProfileView = ({ name, email, projects, tags }: User) => {
             <div>
               <h2>{name}</h2>
             </div>
-            <div>
-              <button>Edit</button>
-            </div>{' '}
-            {/* make the button do anything */}
           </div>
 
           <div style={{ display: 'flex', flex: 1 }}>
             <div>
               <h2>Projects</h2>
             </div>
-            <div>
-              <button>Add</button>
-            </div>{' '}
-            {/* make the button do anything */}
           </div>
 
           <div>
@@ -45,11 +37,8 @@ const ProfileView = ({ name, email, projects, tags }: User) => {
                 </li>
               ))}
             </ul>{' '}
-            {/* TODO why angy? cos ur brackets weren't matched up*/}
           </div>
 
-          {/* TODO a list of tags that are buttons  to remove from profile */}
-          {/* TODO list user tags first, then a list of all tags that the user can add */}
           <div>
             <h2>Tags</h2>
             <ul>

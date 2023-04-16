@@ -1,12 +1,10 @@
 import '../css/addProjectButton.css'
+import { useNavigate } from 'react-router-dom'
 
 const AddProjectButton = () => {
+  const navigate = useNavigate()
   return (
-    <button className="add-project-button"
-      onClick={() => {
-        console.log('Add project button clicked')
-      }}
-    >
+    <button className="add-project-button" onClick={() => navigate('/addProjectView')}>
       +
     </button>
   )
