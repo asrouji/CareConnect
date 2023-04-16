@@ -7,12 +7,15 @@ const AddProjectView = () => {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingLeft: '20px',
+    fontSize: '25px',
   }
 
   const mainStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     gap: '10px',
+    paddingLeft: '20px',
   }
 
   return (
