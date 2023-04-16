@@ -25,11 +25,11 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />}>
+          <Route path="" element={<Explore />} />
           <Route path="ProfileView" element={<ProfileView {...fakeUser} />} />
           <Route path="addProjectView" element={<AddProjectView />} />
           <Route path="explore" element={<Explore />} />
           <Route path="aboutProject/:projectId" element={<AboutProject />} />
-          <Route path="*" element={<Explore />} />
         </Route>
       </Routes>
     </Router>

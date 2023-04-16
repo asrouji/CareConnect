@@ -2,6 +2,9 @@ import { useParams } from 'react-router-dom'
 import { getProjectById } from '../../api/api'
 import renderTagButton from '../TagButton'
 
+import { useState, useEffect } from 'react'
+import { Project } from '../../types/project'
+
 const styles = {
   container: {
     display: 'flex',
@@ -18,8 +21,17 @@ const styles = {
 
 const AboutProject = () => {
   const { projectId } = useParams()
-  if (!projectId) return null
-  const { name, description, creator, members, tags } = getProjectById(projectId) ?? {}
+
+  const [data, setData] = useState<Project | null>(null)
+  useEffect(() => {
+    const inner = async () => {
+      if (!projectId) return null
+      const project = (await getProjectById(projectId)) ?? null
+      setData(project)
+    }
+    inner()
+  }, [projectId])
+  const { name, description, creator, members, tags } = data ?? {}
   return (
     <div style={styles.container}>
       <h1 style={styles.name}>{name}</h1>

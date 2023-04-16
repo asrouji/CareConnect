@@ -1,6 +1,9 @@
 import ProjectCard from '../ProjectCard'
 import { getProjects } from '../../api/api'
 
+import { useEffect, useState } from 'react'
+import { Project } from '../../types/project'
+
 const styles = {
   cards: {
     display: 'flex',
@@ -15,9 +18,20 @@ const styles = {
 }
 
 const Explore = () => {
+  const [data, setData] = useState<Project[] | null>(null)
+  useEffect(() => {
+    const inner = async () => {
+      const projects = await getProjects()
+      console.log('projects', projects)
+      setData(projects)
+    }
+    inner()
+  }, [])
+
+  console.log('data', data)
   return (
     <div style={styles.cards}>
-      {getProjects().map((project, index) => (
+      {data?.map((project, index) => (
         <ProjectCard key={index} {...project} />
       ))}
     </div>
