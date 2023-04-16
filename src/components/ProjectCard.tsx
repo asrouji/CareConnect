@@ -1,5 +1,6 @@
 import renderTagButton from './TagButton'
 import { Project } from '../types/project'
+import { useNavigate } from 'react-router-dom'
 
 const styles: { [key: string]: React.CSSProperties } = {
   card: {
@@ -22,8 +23,10 @@ const styles: { [key: string]: React.CSSProperties } = {
 }
 
 const ProjectCard = ({ name, description, tags }: Project) => {
+  const navigate = useNavigate()
+
   return (
-    <div style={styles.card}>
+    <div style={styles.card} onClick={() => navigate('./pages/AboutProject')}>
       <h3>{name}</h3>
       <p style={styles.description}>{description}</p>
       <footer style={styles.tags}>{tags.map(renderTagButton)}</footer>

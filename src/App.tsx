@@ -1,6 +1,7 @@
 import './App.css'
 // import ProjectCard from './components/ProjectCard'
-import Explore from './components/pages/Explore'
+// import Explore from './components/pages/Explore'
+import Homepage from './components/pages/Homepage'
 
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 import ProfileView from './components/pages/ProfileView'
@@ -21,7 +22,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/">
-          <Route index element={<Explore />} />
+          <Route index element={<Homepage />} />
           <Route path="ProfileView" element={<ProfileView {...fakeUser} />} />
         </Route>
       </Routes>
