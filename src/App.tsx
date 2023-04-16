@@ -7,6 +7,7 @@ import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 import ProfileView from './components/pages/ProfileView'
 
 import { User } from './types/user'
+import AddProjectView from './components/pages/addProjectView'
 
 const fakeUser: User = {
   id: '1',
@@ -24,6 +25,7 @@ function App() {
         <Route path="/">
           <Route index element={<Homepage />} />
           <Route path="ProfileView" element={<ProfileView {...fakeUser} />} />
+          <Route path="addProjectView" element={<AddProjectView />} />
         </Route>
       </Routes>
     </Router>
