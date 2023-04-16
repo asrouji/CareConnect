@@ -10,7 +10,6 @@ import { User } from './types/user'
 import AddProjectView from './components/pages/addProjectView'
 import Explore from './components/pages/Explore'
 import AboutProject from './components/pages/AboutProject'
-import { useState } from 'react'
 
 const fakeUser: User = {
   id: '1',

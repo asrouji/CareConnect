@@ -1,6 +1,4 @@
-import { useState } from 'react'
 import AddProjectButton from '../AddProjectButton'
-import Explore from './Explore'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 const styles = {
