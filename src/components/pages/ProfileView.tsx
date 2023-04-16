@@ -6,6 +6,8 @@ const ProfileView = ({ name, email, projects, tags }: User) => {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingLeft: '20px',
+    fontSize: '25px',
   }
 
   return (
@@ -15,16 +17,16 @@ const ProfileView = ({ name, email, projects, tags }: User) => {
         <header style={headerStyle}>
           <h1>Profile</h1>
         </header>
-        <main>
+        <main style={{ padding: '20px' }}>
           <div style={{ display: 'flex', flex: 1 }}>
             <div>
-              <h2>{name}</h2>
+              <h2>Profile Name: {name}</h2>
             </div>
           </div>
 
           <div style={{ display: 'flex', flex: 1 }}>
             <div>
-              <h2>Projects</h2>
+              <h2>Saved Projects</h2>
             </div>
           </div>
 
@@ -41,7 +43,7 @@ const ProfileView = ({ name, email, projects, tags }: User) => {
           </div>
 
           <div>
-            <h2>Tags</h2>
+            <h2>Liked Tags</h2>
             {tags.map(tag => renderTagButton(tag))}
           </div>
         </main>
