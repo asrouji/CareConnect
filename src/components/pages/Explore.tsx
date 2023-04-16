@@ -7,27 +7,35 @@ const styles = {
   header: {
     display: 'flex',
     justifyContent: 'flex-end',
+    backgroundColor: 'lightblue',
+    height: '100px',
+    fontFamily: 'Monaco',
+    fontSize: '25px',
   },
 
   title: {
-    marginRight: '500px',
+    display: 'flex',
+    alignItems: 'center',
+    marginRight: '400px',
   },
 
   buttons: {
     display: 'flex',
     gap: '20px',
     paddingRight: '30px',
+    paddingBottom: '30px',
+    fontSize: '15px',
   },
 
   main: {
     display: 'grid',
     paddingInline: '30px',
+    paddingTop: '20px',
     gridTemplateColumns: 'repeat(3, 1fr)',
-  }
+  },
 }
 
 const Explore = () => {
-
   const navigate = useNavigate()
 
   return (

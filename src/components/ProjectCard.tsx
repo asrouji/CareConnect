@@ -9,14 +9,15 @@ const styles: { [key: string]: React.CSSProperties } = {
     gridTemplateRows: 'auto 1fr auto',
     minHeight: '300px',
     borderRadius: '10px',
-    boxShadow:' 2px 2px 5px rgba(0, 0, 0, 0.3)',
+    boxShadow: ' 2px 2px 5px rgba(0, 0, 0, 0.3)',
   },
-  
+
   tags: {
     display: 'flex',
     flexFlow: 'row wrap',
     justifyContent: 'flex-start',
-  }
+    paddingBottom: '10px',
+  },
 }
 
 const ProjectCard = ({ name, description, tags }: Project) => {
