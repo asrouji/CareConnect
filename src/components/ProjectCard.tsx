@@ -22,11 +22,12 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 }
 
-const ProjectCard = ({ name, description, tags }: Project) => {
+const ProjectCard = (project: Project) => {
   const navigate = useNavigate()
+  const { name, description, tags } = project
 
   return (
-    <div style={styles.card} onClick={() => navigate('./pages/AboutProject')}>
+    <div style={styles.card} onClick={() => navigate(`AboutProject/${project.id}`)}>
       <h3>{name}</h3>
       <p style={styles.description}>{description}</p>
       <footer style={styles.tags}>{tags.map(renderTagButton)}</footer>

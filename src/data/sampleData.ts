@@ -27,7 +27,31 @@ const sampleProjects: Project[] = [
     description: 'This is project 1',
     creator: sampleUsers[0],
     members: [sampleUsers[0], sampleUsers[1]],
-    tags: ['Affordable and Clean Energy', 'Peace, Justice and Strong Institutions'],
+    tags: ['Affordable and Clean Energy', 'Peace, Justice and Strong Institutions', 'Life Below Water'],
+  },
+  {
+    id: '2',
+    name: 'Project 2',
+    description: 'This is project 2',
+    creator: sampleUsers[1],
+    members: [sampleUsers[1]],
+    tags: ['Good Health and Well-Being'],
+  },
+  {
+    id: '3',
+    name: 'Project 2',
+    description: 'This is project 2',
+    creator: sampleUsers[1],
+    members: [sampleUsers[1]],
+    tags: ['Good Health and Well-Being'],
+  },
+  {
+    id: '4',
+    name: 'Project 2',
+    description: 'This is project 2',
+    creator: sampleUsers[1],
+    members: [sampleUsers[1]],
+    tags: ['Good Health and Well-Being'],
   },
 ]
 

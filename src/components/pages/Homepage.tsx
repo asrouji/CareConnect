@@ -1,6 +1,7 @@
+import { useState } from 'react'
 import AddProjectButton from '../AddProjectButton'
 import Explore from './Explore'
-import { useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 const styles = {
   container: {
@@ -56,7 +57,7 @@ const Homepage = () => {
             <h2 onClick={() => navigate('/ProfileView')}>Profile</h2> {/* TODO Add profile button */}
           </div>
         </header>
-        <Explore />
+        <Outlet />
         <footer style={styles.footer}>About the team</footer>
       </article>
     </>
