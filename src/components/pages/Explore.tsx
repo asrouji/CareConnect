@@ -1,6 +1,7 @@
 import AddProjectButton from '../AddProjectButton'
 import ProjectCard from '../ProjectCard'
 import { getProjects } from '../../api/api'
+import { useNavigate } from 'react-router-dom'
 
 const styles = {
   header: {
@@ -26,6 +27,9 @@ const styles = {
 }
 
 const Explore = () => {
+
+  const navigate = useNavigate()
+
   return (
     <>
       <article>
@@ -33,7 +37,7 @@ const Explore = () => {
           <h1 style={styles.title}>CareConnect</h1>
           <div style={styles.buttons}>
             <AddProjectButton />
-            <h2>Profile</h2> {/* TODO Add profile button */}
+            <h2 onClick={() => navigate('/ProfileView')}>Profile</h2> {/* TODO Add profile button */}
           </div>
         </header>
         <main style={styles.main}>
