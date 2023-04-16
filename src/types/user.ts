@@ -2,6 +2,8 @@ import { Project } from './project'
 import { Tag } from './tag'
 
 export type User = {
+  /** id of this user */
+  id: string
   /** name of this user */
   name: string
   /** email of this user */
