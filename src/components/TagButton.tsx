@@ -1,7 +1,8 @@
 import { tags } from '../data/tags'
 import { Tag } from '../types/tag'
 
-// import chroma from 'chroma-js'
+import chroma from 'chroma-js'
+import { createUseStyles } from 'react-jss'
 
 type TagButtonProps = {
   name: string,
@@ -10,15 +11,20 @@ type TagButtonProps = {
 }
 
 const TagButton = ({ name, color = 'white', textColor = 'black' }: TagButtonProps) => {
-  const buttonStyle = {
-    backgroundColor: color,
-    color: textColor,
-    border: 'none',
-    borderRadius: 0,
-  }
+  const styles = createUseStyles({
+    button: {
+      backgroundColor: color,
+      color: textColor,
+      border: 'none',
+      borderRadius: 0,
+      '&:hover': {
+        backgroundColor: chroma(color).darken(0.5).hex(),
+      }
+    }
+  })()
 
   return (
-    <button style={buttonStyle}>#{name}</button>
+    <button className={styles.button}>#{name}</button>
   )
 }
 
