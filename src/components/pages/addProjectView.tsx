@@ -9,6 +9,12 @@ const AddProjectView = () => {
     alignItems: 'center',
   }
 
+  const mainStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+  }
+
   return (
     <div className="addProjectView">
       <head>Add Project</head>
@@ -16,12 +22,15 @@ const AddProjectView = () => {
         <header style={headerStyle}>
           <h1>Add Project</h1>
         </header>
-        <main>
+        <main style={mainStyle}>
           <input type="text" name="projectName" placeholder="Project Name" />
           <input type="text" name="projectDescription" placeholder="Project Description" />
-          {Object.keys(tags).map(key => {
-            return renderTagButton(key as Tag)
-          })}
+          <div>
+            <p>Add tags:</p>
+            {Object.keys(tags).map(key => {
+              return renderTagButton(key as Tag)
+            })}
+          </div>
         </main>
         <footer></footer>
       </article>
